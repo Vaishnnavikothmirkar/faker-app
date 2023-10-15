@@ -33,5 +33,11 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.32.2"
 	},
+	
+	"dependencies": {
+		"downloadjs": "^1.4.7"
+	},
+
+
 	"type": "module"
 }

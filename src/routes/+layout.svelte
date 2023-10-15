@@ -34,7 +34,7 @@
 		<div class="flex justify-between w-full lg:w-auto">
 			<div class="flex items-center">
 				<NavBrand href="/">
-					<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+					<span class="self-center whitespace-nowrap text-3xl font-semibold dark:text-white">
 						&backsim; Fake/R &backsim;
 					</span>
 				</NavBrand>

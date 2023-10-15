@@ -2,13 +2,19 @@
 <script>
   import { Heading, Input, NumberInput,Span,Label, Select } from 'flowbite-svelte';
   import { Checkbox } from 'flowbite-svelte';
- // Function to handle the form submission
- function handleSubmit(event) {
-   console.log(data); }
-   let value = 5;
-   import {  InputAddon, ButtonGroup, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
-   import { ChevronDownSolid } from 'flowbite-svelte-icons';
+  let FormatTypes = [
+		{ value: 'html', name: 'HTML' },
+		{ value: 'csv', name: 'CSV' },
+		{ value: 'json', name: 'JSON' }
+	];
+  let FormatType= "csv";
+   let value = "5";
+   import {  ButtonGroup} from 'flowbite-svelte';
+   export let data;
+  function handleSubmit(event) {
 
+
+   console.log(data); }
 </script>
  
  <Heading tag="h3" class="mb-2 p-3 py-8 text-center">Generate Data <Span highlight><br></Span> <Span gradient></Span></Heading>
@@ -16,12 +22,15 @@
    <form id="inputForm" on:submit|preventDefault={handleSubmit}>
    <div class="py-8 px-4 mx-auto max-w-screen-xl items-center text-left grid gap-6 xs:grid-cols-1 sm:grid-cols-3 grid-cols-2 space-y-0 ">
   <div>
-    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Personal</p>
+    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Person</p>
     <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-      <li><Checkbox name="fields" value="name" id="name" class="p-1.5">Name</Checkbox></li>
-      <li><Checkbox name="fields" value="email" id="email" class="p-1.5">Email</Checkbox></li>
+      <li><Checkbox name="fields" value="full_name" id="full_name" class="p-1.5">Full Name</Checkbox></li>
+      <li><Checkbox name="fields" value="first_name" id="first_name" class="p-1.5">First Name</Checkbox></li>
+      <li><Checkbox name="fields" value="middle_name" id="middle_name" class="p-1.5">Middle Name</Checkbox></li>
+      <li><Checkbox name="fields" value="last_name" id="last_name" class="p-1.5">Last Name</Checkbox></li>
+      <li><Checkbox name="fields" value="gender" id="gender" class="p-1.5">Gender</Checkbox></li>
       <li><Checkbox name="fields" value="phone_number" id="phone_number" class="p-1.5">Phone Number</Checkbox></li>
-      <li><Checkbox name="fields" value="address" id="address" class="p-1.5">Address</Checkbox></li>
+      <li><Checkbox name="fields" value="zodiac_sign" id="zodiac_sign" class="p-1.5">Zodiac Sign</Checkbox></li>
     </ul> 
  </div>
  <div>
@@ -34,32 +43,24 @@
     </ul>
  </div>
 <div>
-   <p class="mb-4 font-semibold text-gray-900 dark:text-white">Job</p>
+   <p class="mb-4 font-semibold text-gray-900 dark:text-white">Commerce</p>
     <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-    <li><Checkbox name="fields" value="IT" id="IT" class="p-1.5">IT</Checkbox></li>
-    <li><Checkbox name="fields" value="management" id="management" class="p-1.5">Management</Checkbox></li>
-    <li><Checkbox name="fields" value="marketing" id="marketing" class="p-1.5">Marketing</Checkbox></li>
-    <li><Checkbox name="fields" value="business" id="business" class="p-1.5">Business</Checkbox></li>
+    <li><Checkbox name="fields" value="department" id="department" class="p-1.5">Department</Checkbox></li>
+    <li><Checkbox name="fields" value="price" id="price" class="p-1.5">Price</Checkbox></li>
+    <li><Checkbox name="fields" value="product" id="product" class="p-1.5">Product</Checkbox></li>
+    <li><Checkbox name="fields" value="isbn" id="isbn" class="p-1.5">isbn</Checkbox></li>
     </ul>
   </div>
   <div>
-    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Travel</p>
+    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Vehicle</p>
      <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-     <li><Checkbox name="fields" value="budget" id="budget" class="p-1.5">Budget</Checkbox></li>
-     <li><Checkbox name="fields" value="days" id="days" class="p-1.5">Number of days</Checkbox></li>
-     <li><Checkbox name="fields" value="location" id="location" class="p-1.5">Location</Checkbox></li>
-     <li><Checkbox name="fields" value="tourist_attractions" id="tourist_attractions" class="p-1.5">Tourist Attractions</Checkbox></li>
+     <li><Checkbox name="fields" value="type" id="type" class="p-1.5">Type</Checkbox></li>
+     <li><Checkbox name="fields" value="color" id="color" class="p-1.5">Color</Checkbox></li>
+     <li><Checkbox name="fields" value="manufacturer" id="manufacturer" class="p-1.5">Manufacturer</Checkbox></li>
+     <li><Checkbox name="fields" value="model" id="model" class="p-1.5">Model</Checkbox></li>
+     <li><Checkbox name="fields" value="fuel" id="fuel" class="p-1.5">Fuel</Checkbox></li>
      </ul>
  </div> 
- <!--<div>
-    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Products</p>
-     <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-     <li><Checkbox class="p-1.5">svelte</Checkbox></li>
-     <li><Checkbox class="p-1.5">Vue JS</Checkbox></li>
-     <li><Checkbox class="p-1.5">React</Checkbox></li>
-     <li><Checkbox class="p-1.5">Angular</Checkbox></li>
-     </ul>
- </div> -->
  <div>
     <p class="mb-4 font-semibold text-gray-900 dark:text-white">Institution</p>
      <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
@@ -70,12 +71,13 @@
      </ul>
  </div>
  <div>
-  <p class="mb-4 font-semibold text-gray-900 dark:text-white">Purchase</p>
+  <p class="mb-4 font-semibold text-gray-900 dark:text-white">Animals</p>
    <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-   <li><Checkbox name="fields" value="product" id="product" class="p-1.5">Product</Checkbox></li>
-   <li><Checkbox name="fields" value="price" id="price" class="p-1.5">Price</Checkbox></li>
-   <li><Checkbox name="fields" value="quality" id="quality" class="p-1.5">Quality</Checkbox></li>
-   <li><Checkbox name="fields" value="quantity" id="quantity" class="p-1.5">Quantity</Checkbox></li>
+   <li><Checkbox name="fields" value="cat" id="cat" class="p-1.5">Cat</Checkbox></li>
+   <li><Checkbox name="fields" value="dog" id="dog" class="p-1.5">Dog</Checkbox></li>
+   <li><Checkbox name="fields" value="fish" id="fish" class="p-1.5">Fish</Checkbox></li>
+   <li><Checkbox name="fields" value="snake" id="snake" class="p-1.5">Snake</Checkbox></li>
+   <li><Checkbox name="fields" value="horse" id="horse" class="p-1.5">Horse</Checkbox></li>
    </ul>
 </div>
  <br>
@@ -88,145 +90,19 @@
   <br>
   <div>
     <ButtonGroup class="w-full">
-      <Button color="none" class="flex-shrink-0 text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-       Language <ChevronDownSolid class="w-3 h-3 ml-2 text-white dark:text-white" />
-      </Button>
-      <Dropdown>
-        <DropdownItem>Json</DropdownItem>
-        <DropdownItem>CSV</DropdownItem>
-        <DropdownItem>TV</DropdownItem>
-        <DropdownItem>html</DropdownItem>
-      </Dropdown>
-      <Input placeholder="Select" />
-  
+      <Label>Select a Format
+        <Select items={FormatTypes} bind:value={FormatType} /> <!-- on:change={handleSubmit(event)  -->
+      </Label>
     </ButtonGroup>
 </div>
 </div>
 </div>
 </form>
+ <br>
+ <div>
+  <textarea value={generatedRobotsTxt} readonly class="custom-scrollbar focus:outline-0 focus:shadow-none block p-2.5 bg-transparent resize-none w-full h-full text-sm text-gray-900 border-0"/>
+ </div>
+ <br>
 </div>
 
 
-
-<!--
-<div class="tile position-relative text-center">
-    <div class="main-info col-md-8 p-lg-5 mx-auto my-3">
-        <Heading tag="h1" class="mb-4">Welcome to the <Span highlight>#Ultimate <br></Span> <Span gradient>Fake Data Generator!</Span></Heading>
-    <p class="lead font-weight-normal">Generate fake data, or build your API query here.</p>
-    <form id="fake-form" action="/console/" method="GET">
-    <div class="text-center ">
-    <label for="exampleFormControlSelect2"><strong>Generated Data</strong></label>
-    <div class="form-row">
-    <div class="col">
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="name" id="name" type="checkbox" class="custom-control-input field">
-    <label for="name" class="custom-control-label">Names</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="email" id="email" type="checkbox" class="custom-control-input field">
-    <label for="email" class="custom-control-label">Emails</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="address" id="address" type="checkbox" class="custom-control-input field">
-    <label for="address" class="custom-control-label">Addresses</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="date" id="date" type="checkbox" class="custom-control-input field">
-    <label for="date" class="custom-control-label">Dates</label>
-    </div>
-    </div>
-    <div class="col">
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="ssn" id="ssn" type="checkbox" class="custom-control-input field">
-    <label for="ssn" class="custom-control-label">SSNs</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="company_email" id="company_email" type="checkbox" class="custom-control-input field">
-    <label for="company_email" class="custom-control-label">Corporate Emails</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="city" id="city" type="checkbox" class="custom-control-input field">
-    <label for="city" class="custom-control-label">Cities</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="job" id="job" type="checkbox" class="custom-control-input field">
-    <label for="job" class="custom-control-label">Jobs</label>
-    </div>
-    </div>
-    <div class="col">
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="license_plate" id="license_plate" type="checkbox" class="custom-control-input field">
-    <label for="license_plate" class="custom-control-label">License Plates</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="date" id="date" type="checkbox" class="custom-control-input field">
-    <label for="date" class="custom-control-label">Phone Number</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="company" id="company" type="checkbox" class="custom-control-input field">
-    <label for="company" class="custom-control-label">Companies</label>
-    </div>
-    <div class="custom-control custom-checkbox">
-    <input name="fields" value="url" id="url" type="checkbox" class="custom-control-input field">
-    <label for="url" class="custom-control-label">Websites</label>
-    </div>
-    </div>
-    </div>
-    <div class="form-group">
-    <label for="formControlRange">Data Points</label> <strong>(e.g. 1 - 2000)</strong>
-    <input class="form-control" type="number" value="10" id="count" name="count" min="10" max="2000">
-    </div>
-    <div class="form-group">
-    <label for="exampleFormControlSelect1">Format</label>
-    <select class="form-control" id="format" name="format">
-    <option>html</option>
-    <option>csv</option>
-    <option>json</option>
-    </select>
-    </div>
-    </div>
-    <input type="submit" class="btn btn-primary" value="Generate Data">
-    
-    </form>
-    </div>
-    <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-    </div>
-    
-    <div class="tile position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-    <div id="data" class="d-md-flex flex-md-equal w-100 my-md-3">
-    </div>
-    </div>
-    
--->
-    
-
-    
-    <!--<script>
-      // this is the id of the form
-    
-    $("#fake-form").submit(function(e) {
-    
-    e.preventDefault(); // avoid to execute the actual submit of the form.
-    
-    var form = $(this);
-    var url = form.attr('action');
-    var api = "https://api.faker.dev/table";
-    var data = form.serializeArray().reduce(function(obj, item) {
-       // Collapsing Keys
-        obj[item.name] = obj[item.name]?[obj[item.name], item.value].join(','):item.value;
-        return obj;
-    }, {});
-    console.log(data);
-    $.ajax({
-           type: "GET",
-           url: api,
-           data: data,
-           success: function(data)
-           {
-               $("#data").html(data);
-           }
-         });
-    });
-    </script>
-    -->

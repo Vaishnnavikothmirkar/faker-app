@@ -1,6 +1,5 @@
 
 <script>
-  import { onMount } from "svelte";
   import { Heading, Input, NumberInput,Span,Label, Select } from 'flowbite-svelte';
   import { Checkbox } from 'flowbite-svelte';
  // Function to handle the form submission

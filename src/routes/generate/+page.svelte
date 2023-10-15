@@ -1,53 +1,55 @@
 
 <script>
-    import { onMount } from "svelte";
-    import { Heading, Input, Span,Label, Select } from 'flowbite-svelte';
-    import { Checkbox } from 'flowbite-svelte';
-   // Function to handle the form submission
-   export let dataFormats = ["JSON", "CSV", "JavaScript", "TSV"];
-   let format = "JSON";
-   function handleSubmit(event) {
-     console.log(data); }
- </script>
+  import { onMount } from "svelte";
+  import { Heading, Input, NumberInput,Span,Label, Select } from 'flowbite-svelte';
+  import { Checkbox } from 'flowbite-svelte';
+ // Function to handle the form submission
+ function handleSubmit(event) {
+   console.log(data); }
+   let value = 5;
+   import {  InputAddon, ButtonGroup, Button, Dropdown, DropdownItem } from 'flowbite-svelte';
+   import { ChevronDownSolid } from 'flowbite-svelte-icons';
+
+</script>
  
  <Heading tag="h3" class="mb-2 p-3 py-8 text-center">Generate Data <Span highlight><br></Span> <Span gradient></Span></Heading>
  <div>
    <form id="inputForm" on:submit|preventDefault={handleSubmit}>
    <div class="py-8 px-4 mx-auto max-w-screen-xl items-center text-left grid gap-6 xs:grid-cols-1 sm:grid-cols-3 grid-cols-2 space-y-0 ">
   <div>
-    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Technology</p>
+    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Personal</p>
     <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-      <li><Checkbox class="p-1.5">svelte</Checkbox></li>
-      <li><Checkbox class="p-1.5">Vue JS</Checkbox></li>
-      <li><Checkbox class="p-1.5">React</Checkbox></li>
-      <li><Checkbox class="p-1.5">Angular</Checkbox></li>
+      <li><Checkbox name="fields" value="name" id="name" class="p-1.5">Name</Checkbox></li>
+      <li><Checkbox name="fields" value="email" id="email" class="p-1.5">Email</Checkbox></li>
+      <li><Checkbox name="fields" value="phone_number" id="phone_number" class="p-1.5">Phone Number</Checkbox></li>
+      <li><Checkbox name="fields" value="address" id="address" class="p-1.5">Address</Checkbox></li>
     </ul> 
  </div>
  <div>
     <p class="mb-4 font-semibold text-gray-900 dark:text-white">Finance</p>
     <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-      <li><Checkbox class="p-1.5">svelte</Checkbox></li>
-      <li><Checkbox class="p-1.5">Vue JS</Checkbox></li>
-      <li><Checkbox class="p-1.5">React</Checkbox></li>
-      <li><Checkbox class="p-1.5">Angular</Checkbox></li>
+      <li><Checkbox name="fields" value="salary" id="salary" class="p-1.5">Salary</Checkbox></li>
+      <li><Checkbox name="fields" value="insurance" id="insurance" class="p-1.5">Insurance</Checkbox></li>
+      <li><Checkbox name="fields" value="taxes" id="taxes" class="p-1.5">Taxes</Checkbox></li>
+      <li><Checkbox name="salary" value="salary" id="taxes" class="p-1.5">Savings</Checkbox></li>
     </ul>
  </div>
 <div>
-   <p class="mb-4 font-semibold text-gray-900 dark:text-white">Personal</p>
+   <p class="mb-4 font-semibold text-gray-900 dark:text-white">Job</p>
     <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-    <li><Checkbox class="p-1.5">svelte</Checkbox></li>
-    <li><Checkbox class="p-1.5">Vue JS</Checkbox></li>
-    <li><Checkbox class="p-1.5">React</Checkbox></li>
-    <li><Checkbox class="p-1.5">Angular</Checkbox></li>
+    <li><Checkbox name="fields" value="IT" id="IT" class="p-1.5">IT</Checkbox></li>
+    <li><Checkbox name="fields" value="management" id="management" class="p-1.5">Management</Checkbox></li>
+    <li><Checkbox name="fields" value="marketing" id="marketing" class="p-1.5">Marketing</Checkbox></li>
+    <li><Checkbox name="fields" value="business" id="business" class="p-1.5">Business</Checkbox></li>
     </ul>
   </div>
   <div>
-    <p class="mb-4 font-semibold text-gray-900 dark:text-white">location</p>
+    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Travel</p>
      <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-     <li><Checkbox class="p-1.5">svelte</Checkbox></li>
-     <li><Checkbox class="p-1.5">Vue JS</Checkbox></li>
-     <li><Checkbox class="p-1.5">React</Checkbox></li>
-     <li><Checkbox class="p-1.5">Angular</Checkbox></li>
+     <li><Checkbox name="fields" value="budget" id="budget" class="p-1.5">Budget</Checkbox></li>
+     <li><Checkbox name="fields" value="days" id="days" class="p-1.5">Number of days</Checkbox></li>
+     <li><Checkbox name="fields" value="location" id="location" class="p-1.5">Location</Checkbox></li>
+     <li><Checkbox name="fields" value="tourist_attractions" id="tourist_attractions" class="p-1.5">Tourist Attractions</Checkbox></li>
      </ul>
  </div> 
  <!--<div>
@@ -60,36 +62,51 @@
      </ul>
  </div> -->
  <div>
-    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Time Based</p>
+    <p class="mb-4 font-semibold text-gray-900 dark:text-white">Institution</p>
      <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
-     <li><Checkbox class="p-1.5">svelte</Checkbox></li>
-     <li><Checkbox class="p-1.5">Vue JS</Checkbox></li>
-     <li><Checkbox class="p-1.5">React</Checkbox></li>
-     <li><Checkbox class="p-1.5">Angular</Checkbox></li>
+     <li><Checkbox name="fields" value="fees" id="fees" class="p-1.5">Fees</Checkbox></li>
+     <li><Checkbox name="fields" value="campus" id="campus" class="p-1.5">Campus</Checkbox></li>
+     <li><Checkbox name="fields" value="location" id="location" class="p-1.5">Location</Checkbox></li>
+     <li><Checkbox name="fields" value="fields" id="fields" class="p-1.5">Fields</Checkbox></li>
      </ul>
  </div>
+ <div>
+  <p class="mb-4 font-semibold text-gray-900 dark:text-white">Purchase</p>
+   <ul class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600">
+   <li><Checkbox name="fields" value="product" id="product" class="p-1.5">Product</Checkbox></li>
+   <li><Checkbox name="fields" value="price" id="price" class="p-1.5">Price</Checkbox></li>
+   <li><Checkbox name="fields" value="quality" id="quality" class="p-1.5">Quality</Checkbox></li>
+   <li><Checkbox name="fields" value="quantity" id="quantity" class="p-1.5">Quantity</Checkbox></li>
+   </ul>
+</div>
  <br>
  <br>
-  <div class="mb-6">
-  <Label for="default-input" class="block mb-2">Count of Data</Label>
-  <Input id="count" placeholder="Count" />
+ <div class="mb-6"> 
+  <Label class="block mb-2">
+    <span>Count of Data</span>
+    <NumberInput bind:value />
+  </Label>
   <br>
   <div>
-    <Label for="format">Data Format :</Label>
-    <Select
-    name="dataFormat"
-    class="dataFormat"
-    bind:value={dataFormats}
-    >
-    {#each dataFormats as format}
-        <option class="format" {format} > {format} </option>
-    {/each}
-    </Select>
+    <ButtonGroup class="w-full">
+      <Button color="none" class="flex-shrink-0 text-gray-900 bg-gray-100 border border-gray-300 dark:border-gray-700 dark:text-white hover:bg-gray-200 focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+       Language <ChevronDownSolid class="w-3 h-3 ml-2 text-white dark:text-white" />
+      </Button>
+      <Dropdown>
+        <DropdownItem>Json</DropdownItem>
+        <DropdownItem>CSV</DropdownItem>
+        <DropdownItem>TV</DropdownItem>
+        <DropdownItem>html</DropdownItem>
+      </Dropdown>
+      <Input placeholder="Select" />
+  
+    </ButtonGroup>
 </div>
 </div>
 </div>
 </form>
 </div>
+
 
 
 <!--

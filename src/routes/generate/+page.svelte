@@ -90,9 +90,16 @@
   <br>
   <div>
     <ButtonGroup class="w-full">
+      <div>
       <Label>Select a Format
         <Select items={FormatTypes} bind:value={FormatType} /> <!-- on:change={handleSubmit(event)  -->
       </Label>
+      </div>
+      <br> <br>
+      <div>
+        <button class="" type="submit">
+        Submit
+      </button></div>
     </ButtonGroup>
 </div>
 </div>
@@ -100,9 +107,43 @@
 </form>
  <br>
  <div>
-  <textarea value={generatedRobotsTxt} readonly class="custom-scrollbar focus:outline-0 focus:shadow-none block p-2.5 bg-transparent resize-none w-full h-full text-sm text-gray-900 border-0"/>
+  <textarea value={" hi "} readonly class="custom-scrollbar focus:outline-0 focus:shadow-none block p-2.5 bg-transparent resize-none w-full h-full text-sm text-gray-900 border-0"/>
  </div>
  <br>
 </div>
 
+<!-- <script>
+	let todos = [
+		{ done: false, text: 'finish Svelte tutorial' },
+		{ done: false, text: 'build an app' },
+		{ done: false, text: 'world domination' }
+	];
 
+	function add() {
+		todos = todos.concat({ done: false, text: '' });
+	}
+
+	function clear() {
+		todos = todos.filter((t) => !t.done);
+	}
+
+	$: remaining = todos.filter((t) => !t.done).length;
+</script>
+
+<h1>Todos</h1>
+
+{#each todos as todo}
+	<div>
+		<input type="checkbox" bind:checked={todo.done} />
+
+		<input placeholder="What needs to be done?" bind:value={todo.text} disabled={todo.done} />
+	</div>
+{/each}
+
+<p>{remaining} remaining</p>
+
+<button on:click={add}> Add new </button>
+
+<button on:click={clear}> Clear completed </button>
+
+-->

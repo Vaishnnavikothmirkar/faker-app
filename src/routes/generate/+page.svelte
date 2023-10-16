@@ -9,7 +9,7 @@
 	];
 	let FormatType = 'csv';
 	let DataCount = '10';
-	let attributes = [{}];
+	let generate = [{}];
 	let form = {
 		person: {
 			fullName: false,
@@ -57,7 +57,7 @@
   
 	function handleSubmit(event) {
 		event.preventDefault();
-
+    
 		// Form submission logic here
 		// You can use the 'fields', 'count', and 'format' variables
 	}
@@ -398,10 +398,9 @@
     {#each Object.entries(value) as [entry,data]}
     <pre>{entry}-{data}</pre>
     {#if data == true}
-    ( <pre> faker.{field}.{entry}(); </pre>
-     
-
-    )
+    ( <pre> faker.{field}.{entry}(); )</pre>
+    faker.{field}.{entry}();
+    
     {/if}
     
     {/each}

@@ -1,4 +1,4 @@
-<script>
+<script >
 	import { Heading, Input, NumberInput, Span, Label, Select } from 'flowbite-svelte';
 	import { Checkbox } from 'flowbite-svelte';
 	import { faker } from '@faker-js/faker';
@@ -7,10 +7,6 @@
 		{ value: 'csv', name: 'CSV' },
 		{ value: 'json', name: 'JSON' }
 	];
-	let field = '';
-	let entry = '';
-	let value = "";
-	let data = '';
 	let FormatType = 'csv';
 	let DataCount = '10';
 	let form = {
@@ -58,24 +54,34 @@
 	};
 	console.info(form);
 	function generate() {
-		let generatedData = {};
-		for ([field,value] of Object.entries(form)) {
-			for ([entry,data] of Object.entries(value)) {
+		let [key,value] = Object.entries(form);
+       let [entry,data] = Object.entries(value);
+		for ([key,value] of Object.entries(form)) {
+			for ([entry, data] of Object.entries(value)) {
 				if (data === true) {
-				 let testData = faker.field.entry()
-				 console.log(testData)
+					const sub = Object.entries(value);
+                         for(let i=0;i<=DataCount;i++){
+						let sub =+ Object.entries(value);
+						 faker.key.Object.entries(value)();
+						 }
+						 console.log(faker.key.Object.entries(value)())
+
+					 }  
+				  };
+					
+					
 				}
 			}
-		}
-	}
+		
+	
 	function handleSubmit(event) {
 		event.preventDefault();
-		generate(field, entry);
+		generate();
 
 		// Form submission logic here for faker.{field}.{entry}();
 		// You can use the 'fields', 'count', and 'format' variables
-	} 
-	console.log()
+	}
+	console.log();
 </script>
 
 <Heading tag="h3" class="mb-2 p-3 py-8 text-center"
@@ -413,9 +419,9 @@
 	</form>
 	<br />
 	<div>
-		{#each Object.entries(form) as [field,value]}
+		{#each Object.entries(form) as [field, stat]}
 			<pre>{field}</pre>
-			{#each Object.entries(value) as [entry,data]}
+			{#each Object.entries(stat) as [entry, data]}
 				<pre>{entry}={data}</pre>
 				{#if data == true}
 					<pre> faker.{field}.{entry}()</pre>

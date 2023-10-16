@@ -1,15 +1,18 @@
 <script>
 	import { Heading, Input, NumberInput, Span, Label, Select } from 'flowbite-svelte';
 	import { Checkbox } from 'flowbite-svelte';
-  import { faker } from '@faker-js/faker';
+	import { faker } from '@faker-js/faker';
 	let FormatTypes = [
 		{ value: 'html', name: 'HTML' },
 		{ value: 'csv', name: 'CSV' },
 		{ value: 'json', name: 'JSON' }
 	];
+	let field = '';
+	let entry = '';
+	let value = "";
+	let data = '';
 	let FormatType = 'csv';
 	let DataCount = '10';
-	let generate = [{}];
 	let form = {
 		person: {
 			fullName: false,
@@ -53,14 +56,26 @@
 			horse: false
 		}
 	};
-	console.info(form)
-  
+	console.info(form);
+	function generate() {
+		let generatedData = {};
+		for ([field,value] of Object.entries(form)) {
+			for ([entry,data] of Object.entries(value)) {
+				if (data === true) {
+				 let testData = faker.field.entry()
+				 console.log(testData)
+				}
+			}
+		}
+	}
 	function handleSubmit(event) {
 		event.preventDefault();
-    
-		// Form submission logic here
+		generate(field, entry);
+
+		// Form submission logic here for faker.{field}.{entry}();
 		// You can use the 'fields', 'count', and 'format' variables
-	}
+	} 
+	console.log()
 </script>
 
 <Heading tag="h3" class="mb-2 p-3 py-8 text-center"
@@ -388,24 +403,25 @@
 					<!-- on:change={handleSubmit(event)  -->
 				</Label>
 			</div>
-			<Input class="border-2 border-gray-500 rounded-lg" id="submit" type="submit" value="GENERATE DATA" />
+			<Input
+				class="border-2 border-gray-500 rounded-lg"
+				id="submit"
+				type="submit"
+				value="GENERATE DATA"
+			/>
 		</div>
 	</form>
 	<br />
 	<div>
-    {#each Object.entries(form) as [field,value]}
-    <pre>{field}</pre>
-    {#each Object.entries(value) as [entry,data]}
-    <pre>{entry}-{data}</pre>
-    {#if data == true}
-    ( <pre> faker.{field}.{entry}(); )</pre>
-    faker.{field}.{entry}();
-    
-    {/if}
-    
-    {/each}
-    
-    {/each}
+		{#each Object.entries(form) as [field,value]}
+			<pre>{field}</pre>
+			{#each Object.entries(value) as [entry,data]}
+				<pre>{entry}={data}</pre>
+				{#if data == true}
+					<pre> faker.{field}.{entry}()</pre>
+				{/if}
+			{/each}
+		{/each}
 		<textarea
 			value={console.info(form)}
 			placeholder="Generated Data"

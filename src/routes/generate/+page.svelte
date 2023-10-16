@@ -398,7 +398,7 @@
     {#each Object.entries(value) as [entry,data]}
     <pre>{entry}-{data}</pre>
     {#if data == true}
-    ( <pre> faker.{{field}}.{{entry}}(); </pre>
+    ( <pre> faker.{field}.{entry}(); </pre>
      
 
     )

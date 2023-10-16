@@ -388,11 +388,7 @@
 					<!-- on:change={handleSubmit(event)  -->
 				</Label>
 			</div>
-			<Input
-				type="submit";
-				class="btn btn-primary rounded-lg  font-semibold text-gray-900 dark:text-white border border-gray-200 dark:bg-gray-800 dark:border-gray-600"
-				value="Generate Data"
-			/>
+			<Input class="border-2 border-gray-500 rounded-lg" id="submit" type="submit" value="GENERATE DATA" />
 		</div>
 	</form>
 	<br />

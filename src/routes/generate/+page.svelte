@@ -1,6 +1,6 @@
 
 <script>
-  import { Heading, Input, NumberInput,Span,Label, Select } from 'flowbite-svelte';
+  import { Heading, Input,ButtonGroup,Button, NumberInput,Span,Label, Select } from 'flowbite-svelte';
   import { Checkbox } from 'flowbite-svelte';
   let FormatTypes = [
 		{ value: 'html', name: 'HTML' },
@@ -9,9 +9,8 @@
 	];
   let FormatType= "csv";
    let value = "5";
-   import {  ButtonGroup} from 'flowbite-svelte';
-   export let data;
-  function handleSubmit(event) {
+   let data = "";
+  function handleSubmit() {
 
 
    console.log(data); }
@@ -80,34 +79,23 @@
    <li><Checkbox name="fields" value="horse" id="horse" class="p-1.5">Horse</Checkbox></li>
    </ul>
 </div>
- <br>
- <br>
+ 
  <div class="mb-6"> 
   <Label class="block mb-2">
     <span>Count of Data</span>
     <NumberInput bind:value />
   </Label>
   <br>
-  <div>
-    <ButtonGroup class="w-full">
-      <div>
-      <Label>Select a Format
-        <Select items={FormatTypes} bind:value={FormatType} /> <!-- on:change={handleSubmit(event)  -->
-      </Label>
-      </div>
-      <br> <br>
-      <div>
-        <button class="" type="submit">
-        Submit
-      </button></div>
-    </ButtonGroup>
-</div>
-</div>
+    <Label>Select a Format
+      <Select items={FormatTypes} bind:value={FormatType} /> <!-- on:change={handleSubmit(event)  -->
+    </Label>
+</div> 
+<Input type="submit" class="btn btn-primary rounded-lg  font-semibold text-gray-900 dark:text-white border border-gray-200 dark:bg-gray-800 dark:border-gray-600" value="Generate Data" />
 </div>
 </form>
  <br>
  <div>
-  <textarea value={" hi "} readonly class="custom-scrollbar focus:outline-0 focus:shadow-none block p-2.5 bg-transparent resize-none w-full h-full text-sm text-gray-900 border-0"/>
+  <textarea value={data} placeholder="Generated Data" readonly class="custom-scrollbar focus:outline-0 focus:shadow-none dark:text-gray-500 block p-2.5 bg-white bg-transparent  w-full h-full text-sm text-gray-500 border-0"/>
  </div>
  <br>
 </div>

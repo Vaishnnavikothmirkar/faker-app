@@ -1,12 +1,12 @@
 <script>
 	import { Heading, Input, NumberInput, Span, Label, Select } from 'flowbite-svelte';
 	import { Checkbox } from 'flowbite-svelte';
+  import { faker } from '@faker-js/faker';
 	let FormatTypes = [
 		{ value: 'html', name: 'HTML' },
 		{ value: 'csv', name: 'CSV' },
 		{ value: 'json', name: 'JSON' }
 	];
-	console.info(FormatTypes);
 	let FormatType = 'csv';
 	let DataCount = '10';
 	let attributes = [{}];
@@ -53,8 +53,8 @@
 			horse: false
 		}
 	};
-	console.info(form);
-
+	console.info(form)
+  
 	function handleSubmit(event) {
 		event.preventDefault();
 
@@ -72,7 +72,7 @@
 			class="py-8 px-4 mx-auto max-w-screen-xl items-center text-left grid gap-6 xs:grid-cols-1 sm:grid-cols-3 grid-cols-2 space-y-0"
 		>
 			<div>
-				<p lass="mb-4 font-semibold text-gray-900 dark:text-white">Person</p>
+				<p class="mb-4 font-semibold text-gray-900 dark:text-white">Person</p>
 				<pre>{form.person.fullName},{form.person.firstName},{form.person.lastName}</pre>
 				<ul
 					class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600"
@@ -393,8 +393,22 @@
 	</form>
 	<br />
 	<div>
+    {#each Object.entries(form) as [field,value]}
+    <pre>{field}</pre>
+    {#each Object.entries(value) as [entry,data]}
+    <pre>{entry}-{data}</pre>
+    {#if data == true}
+    ( <pre> faker.{{field}}.{{entry}}(); </pre>
+     
+
+    )
+    {/if}
+    
+    {/each}
+    
+    {/each}
 		<textarea
-			value={form}
+			value={console.info(form)}
 			placeholder="Generated Data"
 			readonly
 			class="custom-scrollbar focus:outline-0 focus:shadow-none dark:text-gray-500 block p-2.5 bg-white bg-transparent w-full h-full text-sm text-gray-500 border-0"

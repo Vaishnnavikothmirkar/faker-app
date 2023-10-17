@@ -508,14 +508,9 @@
 	</form>
 	<br />
 	<div>
-		{#each Object.entries(form) as [field, stat]}
-			<pre>{field}</pre>
-			{#each Object.entries(stat) as [entry, data]}
-				<pre>{entry}={data}</pre>
-				{#if data == true}
-					<pre> faker.{field}.{entry}()</pre>
-				{/if}
-			{/each}
+		{#each Object.entries(testData) as [field, stat]}
+			<pre>{field},{stat}</pre>
+			
 		{/each}
 		<textarea 
 		placeholder= "Generated Data"

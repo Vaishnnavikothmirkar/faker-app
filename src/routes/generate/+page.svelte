@@ -1,7 +1,8 @@
-<script >
+<script>
 	import { Heading, Input, NumberInput, Span, Label, Select } from 'flowbite-svelte';
 	import { Checkbox } from 'flowbite-svelte';
 	import { faker } from '@faker-js/faker';
+	export let testData = [];
 	let FormatTypes = [
 		{ value: 'html', name: 'HTML' },
 		{ value: 'csv', name: 'CSV' },
@@ -54,26 +55,87 @@
 	};
 	console.info(form);
 	function generate() {
-		let [key,value] = Object.entries(form);
-       let [entry,data] = Object.entries(value);
-		for ([key,value] of Object.entries(form)) {
+		let [key, value] = Object.entries(form);
+		let [entry, data] = Object.entries(value);
+		for ([key, value] of Object.entries(form)) {
 			for ([entry, data] of Object.entries(value)) {
 				if (data === true) {
-					const sub = Object.entries(value);
-                         for(let i=0;i<=DataCount;i++){
-						let sub =+ Object.entries(value);
-						 faker.key.Object.entries(value)();
-						 }
-						 console.log(faker.key.Object.entries(value)())
+					const sub = entry;
+					for (let i = 0; i <= DataCount; i++) {
+						 function valueReturn(key, sub) {
+							console.info(key, Object.entries(form));
+							switch (key) {
+								case 'firstName':
+									return faker.person.firstName();
 
-					 }  
-				  };
-					
-					
+								case 'lastName':
+									return faker.person.lastName();
+
+								case 'fullName':
+									return faker.person.fullName();
+
+								case 'phoneNumber':
+									return faker.key.phoneNumber();
+
+								case 'sex':
+									return faker.key.sex();
+
+								case 'jobTitle':
+									return faker.key.jobTitle();
+
+								case 'jobType':
+									return faker.key.jobType();
+
+								case 'number':
+									return faker.key.number();
+
+								case 'city':
+									return faker.key.city();
+
+								case 'country':
+									return faker.key.country();
+
+								case 'countryCode':
+									return faker.key.countryCode();
+
+								case 'direction':
+									return faker.key.direction();
+
+								case 'street':
+									return faker.key.street();
+
+								case 'zipCode':
+									return faker.key.zipCode();
+
+								case 'birthdate':
+									return faker.date.birthdate();
+
+								case 'weekday':
+									return faker.date.weekday();
+
+								case 'text':
+									return faker.lorem.text();
+
+								case 'sentences':
+									return faker.lorem.sentences();
+
+								case 'word':
+									return faker.lorem.word();
+
+								default:
+									return 'New Data';
+							}
+						}
+					  testData = [valueReturn(sub)]; 
+						
+
+						console.log(testData);
+					}
 				}
 			}
-		
-	
+		}
+	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
 		generate();
@@ -81,7 +143,7 @@
 		// Form submission logic here for faker.{field}.{entry}();
 		// You can use the 'fields', 'count', and 'format' variables
 	}
-	console.log();
+	console.log(form);
 </script>
 
 <Heading tag="h3" class="mb-2 p-3 py-8 text-center"
@@ -429,7 +491,7 @@
 			{/each}
 		{/each}
 		<textarea
-			value={console.info(form)}
+			value={console.info(testData)}
 			placeholder="Generated Data"
 			readonly
 			class="custom-scrollbar focus:outline-0 focus:shadow-none dark:text-gray-500 block p-2.5 bg-white bg-transparent w-full h-full text-sm text-gray-500 border-0"

@@ -2,6 +2,7 @@
 	import { Heading, Input, NumberInput, Span, Label, Select } from 'flowbite-svelte';
 	import { Checkbox } from 'flowbite-svelte';
 	import { faker } from '@faker-js/faker';
+
 	export let testData = [];
 	let FormatTypes = [
 		{ value: 'html', name: 'HTML' },
@@ -14,23 +15,22 @@
 		person: {
 			fullName: false,
 			firstName: false,
-			middleName: false,
 			lastName: false,
 			gender: false,
 			phoneNumber: false,
 			zodiacSign: false
 		},
 		finance: {
-			salary: false,
-			insurance: false,
-			taxes: false,
-			savings: false
+			accountName: false,
+			accountNumber: false,
+			amount: false,
+			currency: false
 		},
 		commerce: {
 			department: false,
 			price: false,
 			product: false,
-			isbn: false
+			productDescription: false
 		},
 		vehicle: {
 			type: false,
@@ -39,11 +39,11 @@
 			model: false,
 			fuel: false
 		},
-		institution: {
-			fees: false,
-			campus: false,
-			location: false,
-			fields: false
+		location: {
+			street: false,
+			cityName: false,
+			state: false,
+			country: false
 		},
 		animals: {
 			cat: false,
@@ -61,9 +61,9 @@
 			for ([entry, data] of Object.entries(value)) {
 				if (data === true) {
 					const sub = entry;
-					for (let i = 0; i <= DataCount; i++) {
-						 function valueReturn(key, sub) {
-							console.info(key, Object.entries(form));
+					for (let i = 1; i <= DataCount; i++) {
+						function valueReturn(key, sub) {
+							//console.info(key, Object.entries(form)=={sub,value});
 							switch (key) {
 								case 'firstName':
 									return faker.person.firstName();
@@ -75,62 +75,89 @@
 									return faker.person.fullName();
 
 								case 'phoneNumber':
-									return faker.key.phoneNumber();
+									return faker.phone.number();
 
 								case 'sex':
-									return faker.key.sex();
+									return faker.person.gender();
 
-								case 'jobTitle':
-									return faker.key.jobTitle();
+								case 'zodiacSign':
+									return faker.person.zodiacSign();
 
-								case 'jobType':
-									return faker.key.jobType();
+								case 'accountName':
+									return faker.finance.accountName();
 
-								case 'number':
-									return faker.key.number();
+								case 'accountNumber':
+									return faker.finance.accountNumber();
 
-								case 'city':
-									return faker.key.city();
+								case 'amount':
+									return faker.finance.amount();
 
-								case 'country':
-									return faker.key.country();
+								case 'currency':
+									return faker.finance.currency();
 
-								case 'countryCode':
-									return faker.key.countryCode();
+								case 'department':
+									return faker.commerce.department();
 
-								case 'direction':
-									return faker.key.direction();
+								case 'price':
+									return faker.commerce.price();
+
+								case 'product':
+									return faker.commerce.product();
+
+								case 'productDescription':
+									return faker.commerce.productDescription();
+
+								case 'type':
+									return faker.vehicle.type();
+
+								case 'color':
+									return faker.vehicle.color();
+
+								case 'manufacturer':
+									return faker.vehicle.manufacturer();
+
+								case 'model':
+									return faker.vehicle.model();
+
+								case 'fuel':
+									return faker.vehicle.fuel();
 
 								case 'street':
-									return faker.key.street();
+									return faker.location.street();
 
-								case 'zipCode':
-									return faker.key.zipCode();
+								case 'cityName':
+									return faker.location.city();
 
-								case 'birthdate':
-									return faker.date.birthdate();
+								case 'state':
+									return faker.location.state();
 
-								case 'weekday':
-									return faker.date.weekday();
+								case 'country':
+									return faker.location.country();
 
-								case 'text':
-									return faker.lorem.text();
+								case 'cat':
+									return faker.animals.cat();
 
-								case 'sentences':
-									return faker.lorem.sentences();
+								case 'dog':
+									return faker.animals.dog();
 
-								case 'word':
-									return faker.lorem.word();
+								case 'fish':
+									return faker.animals.fish();
+
+								case 'snake':
+									return faker.animals.snake();
+
+								case 'horse':
+									return faker.animals.horse();
 
 								default:
 									return 'New Data';
 							}
 						}
-					  testData = [valueReturn(sub)]; 
-						
-
-						console.log(testData);
+						let newData = [i];
+						newData[i] = valueReturn(sub, key);
+						testData[entry] += ","+ newData[i] + "","";
 					}
+					// testData = [valueReturn(sub, key)];
 				}
 			}
 		}
@@ -139,11 +166,11 @@
 	function handleSubmit(event) {
 		event.preventDefault();
 		generate();
-
+		console.log(testData);
 		// Form submission logic here for faker.{field}.{entry}();
 		// You can use the 'fields', 'count', and 'format' variables
 	}
-	console.log(form);
+	
 </script>
 
 <Heading tag="h3" class="mb-2 p-3 py-8 text-center"
@@ -179,13 +206,13 @@
 						>
 					</li>
 					<li>
-						<Checkbox
+						<!--		<Checkbox
 							bind:checked={form.person.middleName}
 							name="fields"
 							value="middle_name"
 							id="middle_name"
 							class="p-1.5">Middle Name</Checkbox
-						>
+						>  -->
 					</li>
 					<li>
 						<Checkbox
@@ -232,38 +259,38 @@
 				>
 					<li>
 						<Checkbox
-							bind:checked={form.finance.salary}
+							bind:checked={form.finance.accountName}
 							name="fields"
-							value="salary"
-							id="salary"
-							class="p-1.5">Salary</Checkbox
+							value="accountName"
+							id="accountName"
+							class="p-1.5">Account Name</Checkbox
 						>
 					</li>
 					<li>
 						<Checkbox
-							bind:checked={form.finance.insurance}
+							bind:checked={form.finance.accountNumber}
 							name="fields"
-							value="insurance"
-							id="insurance"
-							class="p-1.5">Insurance</Checkbox
+							value="accountNumber"
+							id="accountNumber"
+							class="p-1.5">accountNumber</Checkbox
 						>
 					</li>
 					<li>
 						<Checkbox
-							bind:checked={form.finance.taxes}
+							bind:checked={form.finance.amount}
 							name="fields"
-							value="taxes"
-							id="taxes"
-							class="p-1.5">Taxes</Checkbox
+							value="amount"
+							id="amount"
+							class="p-1.5">Amount</Checkbox
 						>
 					</li>
 					<li>
 						<Checkbox
-							bind:checked={form.finance.savings}
+							bind:checked={form.finance.currency}
 							name="fields"
-							value="salary"
-							id="taxes"
-							class="p-1.5">Savings</Checkbox
+							value="currency"
+							id="currency"
+							class="p-1.5">Currency</Checkbox
 						>
 					</li>
 				</ul>
@@ -302,11 +329,11 @@
 					</li>
 					<li>
 						<Checkbox
-							bind:checked={form.commerce.isbn}
+							bind:checked={form.commerce.productDescription}
 							name="fields"
-							value="isbn"
-							id="isbn"
-							class="p-1.5">isbn</Checkbox
+							value="productDescription"
+							id="productDescription"
+							class="p-1.5">ProductD escription</Checkbox
 						>
 					</li>
 				</ul>
@@ -364,44 +391,44 @@
 				</ul>
 			</div>
 			<div>
-				<p class="mb-4 font-semibold text-gray-900 dark:text-white">Institution</p>
+				<p class="mb-4 font-semibold text-gray-900 dark:text-white">Location</p>
 				<ul
 					class="w-48 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-600 divide-y divide-gray-200 dark:divide-gray-600"
 				>
 					<li>
 						<Checkbox
-							bind:checked={form.institution.fees}
+							bind:checked={form.location.street}
 							name="fields"
-							value="fees"
-							id="fees"
-							class="p-1.5">Fees</Checkbox
+							value="street"
+							id="street"
+							class="p-1.5">Street</Checkbox
 						>
 					</li>
 					<li>
 						<Checkbox
-							bind:checked={form.institution.campus}
+							bind:checked={form.location.cityName}
 							name="fields"
-							value="campus"
-							id="campus"
-							class="p-1.5">Campus</Checkbox
+							value="CityName"
+							id="CityName"
+							class="p-1.5">City Name</Checkbox
 						>
 					</li>
 					<li>
 						<Checkbox
-							bind:checked={form.institution.location}
+							bind:checked={form.location.state}
 							name="fields"
-							value="location"
-							id="location"
-							class="p-1.5">Location</Checkbox
+							value="state"
+							id="state"
+							class="p-1.5">State</Checkbox
 						>
 					</li>
 					<li>
 						<Checkbox
-							bind:checked={form.institution.fields}
+							bind:checked={form.location.country}
 							name="fields"
-							value="fields"
-							id="fields"
-							class="p-1.5">Fields</Checkbox
+							value="country"
+							id="country"
+							class="p-1.5">Country</Checkbox
 						>
 					</li>
 				</ul>
@@ -490,48 +517,13 @@
 				{/if}
 			{/each}
 		{/each}
-		<textarea
-			value={console.info(testData)}
-			placeholder="Generated Data"
-			readonly
-			class="custom-scrollbar focus:outline-0 focus:shadow-none dark:text-gray-500 block p-2.5 bg-white bg-transparent w-full h-full text-sm text-gray-500 border-0"
-		/>
+		<textarea 
+		placeholder= "Generated Data"
+		readonly 
+		class="custom-scrollbar focus:outline-0 focus:shadow-none dark:text-gray-500 block p-2.5 bg-white bg-transparent w-full h-full text-sm text-gray-500 border-0" 
+		>  {testData} </textarea>
+		
+		
 	</div>
 	<br />
 </div>
-
-<!-- <script>
-	let todos = [
-		{ done: false, text: 'finish Svelte tutorial' },
-		{ done: false, text: 'build an app' },
-		{ done: false, text: 'world domination' }
-	];
-
-	function add() {
-		todos = todos.concat({ done: false, text: '' });
-	}
-
-	function clear() {
-		todos = todos.filter((t) => !t.done);
-	}
-
-	$: remaining = todos.filter((t) => !t.done).length;
-</script>
-
-<h1>Todos</h1>
-
-{#each todos as todo}
-	<div>
-		<input type="checkbox" bind:checked={todo.done} />
-
-		<input placeholder="What needs to be done?" bind:value={todo.text} disabled={todo.done} />
-	</div>
-{/each}
-
-<p>{remaining} remaining</p>
-
-<button on:click={add}> Add new </button>
-
-<button on:click={clear}> Clear completed </button>
-
--->
